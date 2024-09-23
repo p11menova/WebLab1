@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .sidebar {
+            width: 200px;
+            height: 40px;
+            overflow: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        .framed-image {
+            border: 10px solid lightcyan; /* Black border with 10px width */
+            padding: 5px; /* Space between the image and the border */
+        }
+
+        .padding-column {
+            padding: 11px;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+        .tick-button {
+            background-image: url(resources/tick.png);
+
+            width: 400px;
+            height: 380px;
+
+
+        }
+        button:hover {
+            width:440px;
+            height:418px;
+        }
+
+
+
+    </style>
+
+</head>
+
+<div class="header" style="background-color: lightsteelblue; padding: 40px">
+    <h2 style=" text-align: center; ">WEB LAB1</h2>
+    <h3> ekaterina pim </h3>
+    <h3 style="text-align: right"> option 409345 </h3>
+</div>
+
+
+
+<div id="wrapper" class="container" style="display: flex">
+    <div id="left" style="margin-left:18px; float: left; width: 60%">
+        <img class="framed-image" src="resources/img.png">
+        <br>
+
+        <table>
+            <td class="padding-column">
+                <label>
+                    введите Х координату:
+                    <br>
+                    <input type="checkbox" name="x_coord" value="-4"> -4<br>
+                    <input type="checkbox" name="x_coord" value="-3"> -3 <br>
+                    <input type="checkbox" name="x_coord" value="-2"> -2 <br>
+                    <input type="checkbox" name="x_coord" value="-1"> -1 <br>
+                    <input type="checkbox" name="x_coord" value="0"> 0 <br>
+                    <input type="checkbox" name="x_coord" value="1"> 1 <br>
+                    <input type="checkbox" name="x_coord" value="2"> 2 <br>
+                    <input type="checkbox" name="x_coord" value="3"> 3 <br>
+                    <input type="checkbox" name="x_coord" value="4"> 4
+                </label><br>
+            </td>
+            <td class="padding-column" style="vertical-align: top;">
+                <label>
+                    введите Y координату:
+                    <br>
+                    <input type="text" name="y_coord" placeholder="значение от -3 до 5.."
+                           style="background-color:lightcyan; ">
+                </label>
+            </td>
+            <td style="vertical-align: top;" class="padding-column">
+                введите значение радиуса R:
+                <br>
+                <input type="radio" name="Raduis" value="1">1 <br>
+                <input type="radio" name="Raduis" value="2">2 <br>
+                <input type="radio" name="Raduis" value="3">3 <br>
+                <input type="radio" name="Raduis" value="4">4 <br>
+                <input type="radio" name="Raduis" value="5">5 <br>
+            </td>
+        </table>
+
+
+<!--        <div class="sidebar">-->
+<!--            kkkkkkk-->
+
+<!--        </div>-->
+    </div>
+    <div id="right" class="container" style="width:40%;">
+        <h1>ksdfjdsl</h1>
+        <button class="tick-button" type="submit"> </button>
+    </div>
+
+
+</div>
+</html>
