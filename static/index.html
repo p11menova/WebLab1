@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NEUROTECH</title>
+    <link rel="icon" href="resources/tick.png" type="image/png">
+    <style>
+        .parent {
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+            overflow: hidden; /*внутренние блоки не выходят за пределы*/
+            width: 100%;
+            background-color: #f9f0ff;
+        }
+
+        .child {
+            display: inline-block;
+            padding: 40px;
+        }
+
+        #input-container {
+            float: left;
+            background-color: #ffe5c8;
+        }
+
+        #input-container label {
+            font-weight: bolder;
+        }
+
+        #submit-button-container {
+            background-color: rgb(249, 236, 217);
+            float: right;
+            display: table-column;
+        }
+
+        #result {
+            background-color: brown;
+            padding: 40px;
+            float: right;
+
+        }
+
+        .tick-button {
+            background-image: url(resources/tick.png);
+            background-size: 320px, 320px;
+            background-color: #f9ecd9;
+            border: transparent;
+            width: 320px;
+            height: 320px;
+            font-family: 'Impact';
+            transition: .8s ease-in-out;
+            color: white;
+            border-radius: 60px;
+
+        }
+
+        .tick-button:hover {
+            background-color: #58d263;
+            background-image: none;
+            border-radius: 60px
+            /*width: 80%;*/
+            /*height: 80%;*/
+        }
+
+        #replacement {
+            display: none;
+            width: 320px;
+            height: 320px;
+            background-image: url(resources/boom.png);
+            background-size: 340px, 340px;
+            font-size: 16px;
+            color: red;
+            border-radius: 60px;
+        }
+
+        #canvas {
+            background-color: white;
+            border: 10px solid lightcyan; /* Black border with 10px width */
+            padding: 5px
+        }
+
+        /*
+        amamama malysh privet kak tvoi dela privet malysh vse KAIF <3
+        variant 1
+        */
+
+        #stats {
+            width: 600px;
+            border-collapse: separate; /* Позволяет задать расстояние между ячейками */
+            border-spacing: 4px; /* Расстояние между ячейками (например, 10px) */
+        }
+
+        #stats td {
+            padding: 10px; /* Внутренние отступы внутри ячеек */
+            background-color: #e1ffff; /* Цвет фона для всех ячеек */
+            border-radius: 5px; /* Добавляем скругление углов */
+            color: black;
+            font-weight: bold
+        }
+
+        .table-stats-header {
+            color: white;
+            background-color: #58d263;
+            text-align: center;
+        }
+
+        .table-stats-header-coords {
+            width: 60px;
+        }
+
+        .status-video {
+            width: 50px; /* Ширина видео */
+            height: auto; /* Высота будет автоматически подстраиваться */
+        }
+
+        .padding-column {
+            padding: 11px;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+
+    </style>
+
+</head>
+<body>
+<div class="header" style="background-color: lightsteelblue; padding: 40px">
+    <h2 style=" text-align: center; ">WEB LAB1</h2>
+    <h3> ekaterina pim </h3>
+    <h3 style="text-align: right"> variant 409345 </h3>
+
+</div>
+
+
+<div id="main-container" class="parent">
+    <div id="input-container" class="child">
+        <canvas id="canvas" width="450px" height="450px"></canvas>
+        <br>
+        <table>
+            <td class="padding-column" id="X-input">
+                <label>
+                    введите Х координату:
+                    <br>
+                    <br>
+                    <label><input type="checkbox" name="x_coord" value="-4"> -4</label><br>
+                    <label><input type="checkbox" name="x_coord" value="-3"> -3</label><br>
+                    <label><input type="checkbox" name="x_coord" value="-2"> -2</label><br>
+                    <label><input type="checkbox" name="x_coord" value="-1"> -1</label><br>
+                    <label><input type="checkbox" name="x_coord" value="0"> 0</label><br>
+                    <label><input type="checkbox" name="x_coord" value="1"> 1</label><br>
+                    <label><input type="checkbox" name="x_coord" value="2"> 2</label><br>
+                    <label><input type="checkbox" name="x_coord" value="3"> 3</label><br>
+                    <label><input type="checkbox" name="x_coord" value="4"> 4</label>
+
+                </label><br>
+            </td>
+            <td class="padding-column" style="vertical-align: top;">
+                <label>
+                    введите Y координату:
+                    <br>
+                    <br>
+                    <input id="Y-input" type="text" name="y_coord" placeholder="значение от -3 до 5.."
+                           style="background-color:lightcyan; ">
+                </label>
+            </td>
+            <td style="vertical-align: top;" class="padding-column">
+                <label>введите значение радиуса R:
+                    <br>
+                    <br>
+                    <label>
+                        <input type="radio" name="Radius" value="1" checked> 1
+                    </label><br>
+                    <label>
+                        <input type="radio" name="Radius" value="2"> 2
+                    </label><br>
+                    <label>
+                        <input type="radio" name="Radius" value="3"> 3
+                    </label><br>
+                    <label>
+                        <input type="radio" name="Radius" value="4"> 4
+                    </label><br>
+                    <label>
+                        <input type="radio" name="Radius" value="5"> 5
+                    </label><br>
+
+                </label>
+            </td>
+        </table>
+
+    </div>
+
+    <div id="submit-button-container" class="child">
+
+        <button class="tick-button" type="submit" id="tick-button"></button>
+        <div id="replacement"></div>
+<!--        <button class="clear-button" type="submit" id="clear-button"></button>-->
+        <h2 style="color: #ff0000" id="error"></h2>
+    </div>
+    <div id="result" class="child" style="background-color: #ffe5c8">
+        <table id="stats">
+            <tr>
+                <th class="table-stats-header"><h3><em class="table-stats-header-coords"> <i>x</i> </em></h3></th>
+                <th class="table-stats-header"><h3><em class="table-stats-header-coords"> <i>y</i> </em></h3></th>
+                <th class="table-stats-header"><h3><em class="table-stats-header-coords"> <i>R</i> </em></h3></th>
+                <th class="table-stats-header"><h3>Result</h3></th>
+                <th class="table-stats-header"><h3>Execution time</h3></th>
+                <th class="table-stats-header"><h3>Time</h3></th>
+            </tr>
+        </table>
+    </div>
+
+
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/CanvasDrawer.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/libs/jquery.min.js"></script>
+</body>
+</html>
